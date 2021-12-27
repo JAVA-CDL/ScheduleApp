@@ -1,7 +1,5 @@
 package com.luke.hot_list.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 /**
  * 数据相关service
  *
@@ -13,5 +11,5 @@ public interface DataService {
     /**
      * 抓取知乎热门
      */
-    void grabZhihu() throws JsonProcessingException;
+    void grabZhihu();
 }

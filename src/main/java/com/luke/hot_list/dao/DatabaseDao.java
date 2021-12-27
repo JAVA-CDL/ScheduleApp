@@ -1,7 +1,6 @@
 package com.luke.hot_list.dao;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Update;
 
 /**
  * 数据库相关

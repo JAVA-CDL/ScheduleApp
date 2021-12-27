@@ -18,7 +18,7 @@ public class TestController {
     DataService dataService;
 
     @GetMapping("/test")
-    public void test() throws JsonProcessingException {
+    public void test(){
         dataService.grabZhihu();
     }
 }
