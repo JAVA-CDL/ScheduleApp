@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luke.hot_list.dao.DatabaseDao">
+
+    <!--创建知乎表-->
+    <update id="createTableZhihu">
+        CREATE TABLE IF NOT EXISTS `zhihu`  (
+          `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+          `content` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+          `grab_date` datetime(6) NULL DEFAULT NULL,
+          `image_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+          `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+          `tag` int(0) NULL DEFAULT NULL,
+          PRIMARY KEY (`url`) USING BTREE
+        ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+    </update>
+</mapper>
