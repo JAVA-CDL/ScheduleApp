@@ -1,6 +1,5 @@
 package com.luke.hot_list.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.luke.hot_list.service.DataService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

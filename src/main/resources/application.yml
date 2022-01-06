@@ -1,7 +1,7 @@
 database:
-  host: 127.0.0.1:13306   #数据库地址
+  host: 82.157.62.176:13306   #数据库地址
   username: root          #数据库用户名
-  password: root          #数据库密码
+  password: luke_long          #数据库密码
 
 
 spring:
