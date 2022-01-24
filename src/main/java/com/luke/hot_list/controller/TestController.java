@@ -14,13 +14,9 @@ import javax.annotation.Resource;
  */
 @RestController
 public class TestController {
-    @Resource
-    DataService dataService;
-    @Resource
-    JueJinService jueJinService;
 
-//    @GetMapping("/test")
-//    public void test(){
-//        jueJinService.checkIn();
-//    }
+    @GetMapping("/test")
+    public String test(){
+        return "test success";
+    }
 }
