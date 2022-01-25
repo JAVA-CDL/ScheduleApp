@@ -4,6 +4,9 @@ database:
   username: root          #数据库用户名
   password: root          #数据库密码
 
+juejin:
+  cookie: "此处放掘金登录后的cookie"
+
 server:
   port: 8080
 

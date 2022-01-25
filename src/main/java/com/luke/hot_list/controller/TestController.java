@@ -2,6 +2,7 @@ package com.luke.hot_list.controller;
 
 import com.luke.hot_list.service.DataService;
 import com.luke.hot_list.service.JueJinService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +14,7 @@ import javax.annotation.Resource;
  * @date 2021/12/27 10:05
  */
 @RestController
+@CrossOrigin
 public class TestController {
 
     @GetMapping("/test")

@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.luke.hot_list.service.JueJinService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service("jueJinService")
@@ -13,7 +14,8 @@ public class JueJinServiceImpl implements JueJinService {
     private static final Logger log = LoggerFactory.getLogger(JueJinServiceImpl.class.getName());
 
     //个人cookie
-    private static final String COOKIE = "";
+    @Value("${juejin.cookie}")
+    private String COOKIE;
 
     public static final String BASE_URL = "https://api.juejin.cn";
     public static final String GET_CHECK_STATUS_URL = "/growth_api/v1/get_today_status";
