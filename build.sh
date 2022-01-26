@@ -2,10 +2,10 @@
 
 echo "start........."
 
-CLOUD_USERNAME=$1
-CLOUD_PASSWORD="此处填写密码"
-CLOUD_IMAGE_PREFIX=$2
-TAG=$3
+CLOUD_USERNAME="云用户名"
+CLOUD_PASSWORD="云密码"
+CLOUD_IMAGE_PREFIX="云命名空间"
+TAG=$1
 
 echo "构建镜像"
 docker build -t "$CLOUD_IMAGE_PREFIX":"$TAG" .
