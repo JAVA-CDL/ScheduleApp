@@ -33,7 +33,7 @@ public interface ZhihuDao {
      */
     int saveAll(List<Zhihu> list);
 
-    @Select("select * from zhihu where (tag is null or tag = 0) order by grab_date desc")
+    @Select("select * from zhihu where (tag is null or tag = 0) order by grab_date desc limit 20")
     List<Zhihu> getAll();
 
     @Update("update zhihu set tag = 1 where url = #{url}")
