@@ -44,7 +44,7 @@ public class DataServiceImpl implements DataService {
             }
             entity.setUrl(url);
             entity.setContent(item.getJSONObject("target").getJSONObject("excerpt_area").getString("text"));
-            entity.setGrabDate(new Date());
+            entity.setGrabDate(DateUtil.now());
             entity.setImageUrl(item.getJSONObject("target").getJSONObject("image_area").getString("url"));
             entity.setTitle(item.getJSONObject("target").getJSONObject("title_area").getString("text"));
             listZhihu.add(entity);

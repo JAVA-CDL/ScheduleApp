@@ -11,7 +11,7 @@ public class Zhihu {
 
     private String url;
     private String content;
-    private Date grabDate;
+    private String grabDate;
     private String imageUrl;
     private String title;
     private Integer tag;
@@ -32,11 +32,11 @@ public class Zhihu {
         this.content = content;
     }
 
-    public Date getGrabDate() {
+    public String getGrabDate() {
         return grabDate;
     }
 
-    public void setGrabDate(Date grabDate) {
+    public void setGrabDate(String grabDate) {
         this.grabDate = grabDate;
     }
 
