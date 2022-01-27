@@ -38,6 +38,9 @@ public class DataServiceImpl implements DataService {
             JSONObject item = list.getJSONObject(i);
             Zhihu entity = new Zhihu();
             String url = item.getJSONObject("target").getJSONObject("link").getString("url");
+            if (!url.startsWith("https://www.zhihu.com/question/")) {
+                continue;
+            }
             Optional<Zhihu> oneByUrl = zhihuDao.findOneByUrl(url);
             if (oneByUrl.isPresent()) {
                 continue;
@@ -58,7 +61,11 @@ public class DataServiceImpl implements DataService {
 
     @Override
     public void cleanOldData() {
-        int result = zhihuDao.cleanOldData();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.add(Calendar.DAY_OF_MONTH, -3);
+        String date = DateUtil.format(calendar.getTime(),"yyyy-MM-dd");
+        int result = zhihuDao.cleanOldData(date);
         log.info(DateUtil.now() + "清理旧数据成功,共清理" + result + "条!");
     }
 

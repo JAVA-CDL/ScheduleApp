@@ -40,6 +40,6 @@ public interface ZhihuDao {
     @Update("update zhihu set tag = 1 where url = #{url}")
     void view(String url);
 
-    @Delete("delete from zhihu where tag = 1")
-    int cleanOldData();
+    @Delete("delete from zhihu where tag = 1 and SUBSTR(grab_date,1,10) = #{date}")
+    int cleanOldData(String date);
 }
