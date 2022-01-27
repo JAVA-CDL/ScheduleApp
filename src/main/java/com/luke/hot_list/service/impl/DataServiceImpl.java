@@ -55,4 +55,12 @@ public class DataServiceImpl implements DataService {
             log.info(DateUtil.now() + "从知乎抓取热榜记录成功,共入库" + result + "条!");
         }
     }
+
+    @Override
+    public void cleanOldData() {
+        int result = zhihuDao.cleanOldData();
+        log.info(DateUtil.now() + "清理旧数据成功,共清理" + result + "条!");
+    }
+
+
 }

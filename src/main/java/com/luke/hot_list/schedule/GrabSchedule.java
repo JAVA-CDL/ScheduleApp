@@ -23,4 +23,9 @@ public class GrabSchedule {
     public void grabZhihu() {
         dataService.grabZhihu();
     }
+
+    @Scheduled(cron = "0 5 0 * * ?")
+    public void cleanOldData() {
+        dataService.cleanOldData();
+    }
 }

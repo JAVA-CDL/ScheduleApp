@@ -12,4 +12,9 @@ public interface DataService {
      * 抓取知乎热门
      */
     void grabZhihu();
+
+    /**
+     * 删除已经tag为1的记录
+     */
+    void cleanOldData();
 }

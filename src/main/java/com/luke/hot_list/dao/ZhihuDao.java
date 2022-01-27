@@ -1,6 +1,7 @@
 package com.luke.hot_list.dao;
 
 import com.luke.hot_list.entity.Zhihu;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -38,4 +39,7 @@ public interface ZhihuDao {
 
     @Update("update zhihu set tag = 1 where url = #{url}")
     void view(String url);
+
+    @Delete("delete from zhihu where tag = 1")
+    int cleanOldData();
 }
