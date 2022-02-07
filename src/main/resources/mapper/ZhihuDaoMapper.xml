@@ -10,4 +10,11 @@
             (#{item.url},#{item.content},#{item.grabDate},#{item.imageUrl},#{item.title},#{item.tag})
         </foreach>
     </insert>
+
+    <update id="view">
+        update zhihu set tag = 1 where url in
+        <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
 </mapper>

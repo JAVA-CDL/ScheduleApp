@@ -37,8 +37,7 @@ public interface ZhihuDao {
     @Select("select * from zhihu where (tag is null or tag = 0) order by grab_date desc limit 20")
     List<Zhihu> getAll();
 
-    @Update("update zhihu set tag = 1 where url = #{url}")
-    void view(String url);
+    void view(String... url);
 
     @Delete("delete from zhihu where tag = 1 and SUBSTR(grab_date,1,10) = #{date}")
     int cleanOldData(String date);

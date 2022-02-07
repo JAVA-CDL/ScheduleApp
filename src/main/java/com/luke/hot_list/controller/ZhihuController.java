@@ -25,4 +25,16 @@ public class ZhihuController {
         String baseUrl = "https://www.zhihu.com/question/";
         zhihuDao.view(baseUrl+url);
     }
+
+    @PostMapping("/viewAll")
+    public void viewAll(@RequestBody List<String> urls){
+        String baseUrl = "https://www.zhihu.com/question/";
+        String[] urlArray = new String[urls.size()];
+        int index = 0;
+        for (String url : urls) {
+            urlArray[index] = baseUrl+url;
+            index++;
+        }
+        zhihuDao.view(urlArray);
+    }
 }
