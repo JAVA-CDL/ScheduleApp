@@ -1,5 +1,6 @@
 package com.luke.hot_list.controller;
 
+import com.luke.hot_list.entity.AccSetup;
 import com.luke.hot_list.service.DataService;
 import com.luke.hot_list.service.JueJinService;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,7 +19,10 @@ import javax.annotation.Resource;
 public class TestController {
 
     @GetMapping("/test")
-    public String test(){
-        return "test success";
+    public AccSetup test(){
+        AccSetup accSetup = new AccSetup();
+        accSetup.setName("哈哈");
+        return accSetup;
     }
+
 }
