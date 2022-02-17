@@ -1,8 +1,7 @@
 package com.luke.hot_list.entity;
 
-import java.util.Date;
-
 /**
+ * 知乎
  * @author luke_long
  * @version 1.0
  * @date 2021/12/27 10:04
