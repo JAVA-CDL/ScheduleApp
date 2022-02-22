@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 
+/**
+ * @author Administrator
+ */
 @Component
 @EnableScheduling
 public class JueJinSchedule {
