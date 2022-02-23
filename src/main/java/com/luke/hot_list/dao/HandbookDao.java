@@ -1,6 +1,7 @@
 package com.luke.hot_list.dao;
 
 import com.luke.hot_list.entity.Handbook;
+import jdk.nashorn.internal.objects.annotations.Setter;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -12,6 +13,12 @@ import java.util.List;
  */
 @Mapper
 public interface HandbookDao {
+
+    /**
+     * 查询是否已经存在同名
+     */
+    @Select("select count(name) from handbook where name = #{name}")
+    int countByName(String name);
 
     /**
      * 添加

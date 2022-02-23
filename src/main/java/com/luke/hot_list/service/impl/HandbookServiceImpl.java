@@ -35,6 +35,9 @@ public class HandbookServiceImpl implements HandbookService {
 
     @Override
     public void save(Handbook handbook) {
-        handbookDao.save(handbook);
+        int count = handbookDao.countByName(handbook.getName());
+        if (count < 1) {
+            handbookDao.save(handbook);
+        }
     }
 }
