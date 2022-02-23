@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luke.hot_list.dao.HandbookDao">
+    <select id="findAllLike" resultType="com.luke.hot_list.entity.Handbook">
+        select * from handbook
+        <if test="name!=null and ''!=name">
+            where name like concat(concat("%",#{name}),"%")
+        </if>
+    </select>
+
+    <select id="findAllEachLike" resultType="com.luke.hot_list.entity.Handbook">
+        select * from handbook
+        <where>
+            <foreach collection="names" item="item" separator=" or " open="(" close=")">
+                name like concat(concat("%",#{item}),"%")
+            </foreach>
+            <if test="ids.size()>0">
+                and id not in
+            </if>
+            <foreach collection="ids" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </where>
+    </select>
+</mapper>

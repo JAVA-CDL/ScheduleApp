@@ -6,14 +6,33 @@
 
     <!--创建知乎表-->
     <update id="createTableZhihu">
-        CREATE TABLE IF NOT EXISTS `zhihu`  (
-          `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-          `content` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
-          `grab_date` datetime(6) NULL DEFAULT NULL,
-          `image_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-          `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-          `tag` int(0) NULL DEFAULT NULL,
-          PRIMARY KEY (`url`) USING BTREE
-        ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+        CREATE TABLE IF NOT EXISTS `zhihu`
+        (
+            `url`       varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+            `content`   longtext CHARACTER SET utf8 COLLATE utf8_general_ci     NULL,
+            `grab_date` datetime(6)                                             NULL DEFAULT NULL,
+            `image_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+            `title`     varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+            `tag`       int(0)                                                  NULL DEFAULT NULL,
+            PRIMARY KEY (`url`) USING BTREE
+        ) ENGINE = InnoDB
+          CHARACTER SET = utf8
+          COLLATE = utf8_general_ci
+          ROW_FORMAT = Dynamic;
+    </update>
+    <!--创建图鉴表-->
+    <update id="createTableHandbook">
+        CREATE TABLE IF NOT EXISTS `handbook`
+        (
+            `id`          int(11)                                                 NOT NULL AUTO_INCREMENT,
+            `name`        varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+            `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+            `img_url`     varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+            PRIMARY KEY (`id`) USING BTREE
+        ) ENGINE = InnoDB
+          AUTO_INCREMENT = 1
+          CHARACTER SET = utf8
+          COLLATE = utf8_general_ci
+          ROW_FORMAT = Dynamic;
     </update>
 </mapper>

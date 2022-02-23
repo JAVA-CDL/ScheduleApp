@@ -15,4 +15,9 @@ public interface DatabaseDao {
      * 创建{知乎}表
      */
     void createTableZhihu();
+
+    /**
+     * 创建{图鉴}表
+     */
+    void createTableHandbook();
 }
