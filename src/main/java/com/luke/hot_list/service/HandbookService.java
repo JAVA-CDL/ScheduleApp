@@ -2,11 +2,11 @@ package com.luke.hot_list.service;
 
 import com.luke.hot_list.entity.Handbook;
 
-import java.util.Set;
+import java.util.List;
 
 public interface HandbookService {
 
-    Set<Handbook> findAll(String name);
+    List<Handbook> findAll(String name);
 
     void save(Handbook handbook);
 }

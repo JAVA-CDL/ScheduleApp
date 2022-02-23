@@ -5,6 +5,7 @@ import com.luke.hot_list.service.HandbookService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -21,7 +22,7 @@ public class HandbookController {
     private HandbookService handbookService;
 
     @GetMapping("/findAll/{name}")
-    public Set<Handbook> findAll(@PathVariable(name = "name") String name) {
+    public List<Handbook> findAll(@PathVariable(name = "name") String name) {
         return handbookService.findAll(name);
     }
 

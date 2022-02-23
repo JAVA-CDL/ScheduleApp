@@ -25,12 +25,12 @@ public class HandbookServiceImpl implements HandbookService {
     private HandbookDao handbookDao;
 
     @Override
-    public Set<Handbook> findAll(String name) {
+    public List<Handbook> findAll(String name) {
         List<Handbook> result = handbookDao.findAllLike(name);
         List<Handbook> eachLikeResult = handbookDao.findAllEachLike(Arrays.asList(name.split("")),
                 result.stream().map(Handbook::getId).collect(Collectors.toList()));
         result.addAll(eachLikeResult);
-        return new HashSet<>(result);
+        return result;
     }
 
     @Override
