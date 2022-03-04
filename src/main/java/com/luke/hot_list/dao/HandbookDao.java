@@ -1,7 +1,6 @@
 package com.luke.hot_list.dao;
 
 import com.luke.hot_list.entity.Handbook;
-import jdk.nashorn.internal.objects.annotations.Setter;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
