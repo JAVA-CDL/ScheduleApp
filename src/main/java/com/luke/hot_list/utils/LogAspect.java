@@ -3,14 +3,15 @@ package com.luke.hot_list.utils;
 import com.alibaba.fastjson.JSON;
 import com.luke.hot_list.annotation.Log;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,10 +32,10 @@ public class LogAspect {
      *
      * @param joinPoint 切点
      */
-    @AfterReturning(pointcut = "@annotation(controllerLog)", returning = "jsonResult")
-    public void doAfterReturning(JoinPoint joinPoint, Log controllerLog, Object jsonResult)
+    @AfterReturning(pointcut = "operationLog()", returning = "jsonResult")
+    public void doAfterReturning(JoinPoint joinPoint, Object jsonResult)
     {
-        handleLog(joinPoint, controllerLog, null, jsonResult);
+        handleLog(joinPoint, null, jsonResult);
     }
 
     /**
@@ -43,27 +44,46 @@ public class LogAspect {
      * @param joinPoint 切点
      * @param e 异常
      */
-    @AfterThrowing(value = "@annotation(controllerLog)", throwing = "e")
-    public void doAfterThrowing(JoinPoint joinPoint, Log controllerLog, Exception e)
+    @AfterThrowing(value = "operationLog()", throwing = "e")
+    public void doAfterThrowing(JoinPoint joinPoint, Exception e)
     {
-        handleLog(joinPoint, controllerLog, e, null);
+        handleLog(joinPoint, e, null);
     }
 
     /**
      * 日志处理
      */
-    protected void handleLog(final JoinPoint joinPoint, Log controllerLog, final Exception e, Object jsonResult)
+    protected void handleLog(final JoinPoint joinPoint, final Exception e, Object jsonResult)
     {
         try
         {
+            Signature signature = joinPoint.getSignature();
+            MethodSignature methodSignature = (MethodSignature) signature;
+            Method method = methodSignature.getMethod();
+            Log controllerLog = null;
+            if (method != null) {
+                controllerLog = method.getAnnotation(Log.class);
+            }
             Map<String, String> log = new HashMap<>(7);
             ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-            HttpServletRequest request = attributes.getRequest();
-            String requestTitle = controllerLog.title();
+            HttpServletRequest request = null;
+            if (attributes != null) {
+                request = attributes.getRequest();
+            }
+            String requestTitle = null;
+            if (controllerLog != null) {
+                requestTitle = controllerLog.title();
+            }
             String requestResult = JSON.toJSONString(jsonResult);
             String requestArgs = JSON.toJSONString(joinPoint.getArgs());
-            String requestUrl = request.getRequestURL().toString();
-            String requestMethod = request.getMethod();
+            String requestUrl = null;
+            if (request != null) {
+                requestUrl = request.getRequestURL().toString();
+            }
+            String requestMethod = null;
+            if (request != null) {
+                requestMethod = request.getMethod();
+            }
             String className = joinPoint.getTarget().getClass().getName();
             String methodName = joinPoint.getSignature().getName();
 

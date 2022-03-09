@@ -5,9 +5,9 @@ import java.lang.annotation.*;
 /**
  * @author luke_long
  */
-@Documented
-@Target({ElementType.METHOD})
+@Target({ ElementType.PARAMETER, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
+@Documented
 public @interface Log{
     /**
      * 操作名称
