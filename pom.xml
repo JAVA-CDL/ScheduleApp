@@ -8,13 +8,13 @@
         <version>2.6.4</version>
         <relativePath/>
     </parent>
-    <groupId>org.example</groupId>
+    <groupId>com.luke</groupId>
     <artifactId>hot_list</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <name>hot_list</name>
-    <description>Demo project for Spring Boot</description>
+    <description>hot list server</description>
     <properties>
-        <java.version>17</java.version>
+        <java.version>1.8</java.version>
         <log4j2.version>2.17.0</log4j2.version>
         <tomcat.version>9.0.58</tomcat.version>
     </properties>
@@ -58,14 +58,4 @@
             <version>1.2.8</version>
         </dependency>
     </dependencies>
-
-<!--    <build>-->
-<!--        <plugins>-->
-<!--            <plugin>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--            </plugin>-->
-<!--        </plugins>-->
-<!--    </build>-->
-
 </project>
