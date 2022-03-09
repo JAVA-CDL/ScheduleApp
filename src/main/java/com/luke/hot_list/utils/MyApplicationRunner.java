@@ -23,5 +23,6 @@ public class MyApplicationRunner implements ApplicationRunner {
         //启动之后,若数据库不存在,创建数据库
         databaseDao.createTableZhihu();
         databaseDao.createTableHandbook();
+        databaseDao.createTableLog();
     }
 }

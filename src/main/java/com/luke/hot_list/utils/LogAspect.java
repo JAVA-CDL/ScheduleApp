@@ -2,6 +2,7 @@ package com.luke.hot_list.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.luke.hot_list.annotation.Log;
+import com.luke.hot_list.dao.DatabaseDao;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.*;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -23,6 +25,9 @@ import java.util.Map;
 @Aspect
 @Component
 public class LogAspect {
+
+    @Resource
+    private DatabaseDao databaseDao;
 
     @Pointcut("@annotation(com.luke.hot_list.annotation.Log)")
     public void operationLog(){}
@@ -95,9 +100,7 @@ public class LogAspect {
             log.put("className", className);
             log.put("methodName", methodName);
 
-            String logJson = JSON.toJSONString(log);
-            System.out.println(logJson);
-
+            databaseDao.insertIntoLog(log);
         }
         catch (Exception exp)
         {
