@@ -38,8 +38,7 @@ public class LogAspect {
      * @param joinPoint 切点
      */
     @AfterReturning(pointcut = "operationLog()", returning = "jsonResult")
-    public void doAfterReturning(JoinPoint joinPoint, Object jsonResult)
-    {
+    public void doAfterReturning(JoinPoint joinPoint, Object jsonResult) throws Exception {
         handleLog(joinPoint, null, jsonResult);
     }
 
@@ -50,61 +49,53 @@ public class LogAspect {
      * @param e 异常
      */
     @AfterThrowing(value = "operationLog()", throwing = "e")
-    public void doAfterThrowing(JoinPoint joinPoint, Exception e)
-    {
+    public void doAfterThrowing(JoinPoint joinPoint, Exception e) throws Exception {
         handleLog(joinPoint, e, null);
     }
 
     /**
      * 日志处理
      */
-    protected void handleLog(final JoinPoint joinPoint, final Exception e, Object jsonResult)
+    protected void handleLog(final JoinPoint joinPoint, final Exception e, Object jsonResult) throws Exception
     {
-        try
-        {
-            Signature signature = joinPoint.getSignature();
-            MethodSignature methodSignature = (MethodSignature) signature;
-            Method method = methodSignature.getMethod();
-            Log controllerLog = null;
-            if (method != null) {
-                controllerLog = method.getAnnotation(Log.class);
-            }
-            Map<String, String> log = new HashMap<>(7);
-            ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-            HttpServletRequest request = null;
-            if (attributes != null) {
-                request = attributes.getRequest();
-            }
-            String requestTitle = null;
-            if (controllerLog != null) {
-                requestTitle = controllerLog.title();
-            }
-            String requestResult = JSON.toJSONString(jsonResult);
-            String requestArgs = JSON.toJSONString(joinPoint.getArgs());
-            String requestUrl = null;
-            if (request != null) {
-                requestUrl = request.getRequestURL().toString();
-            }
-            String requestMethod = null;
-            if (request != null) {
-                requestMethod = request.getMethod();
-            }
-            String className = joinPoint.getTarget().getClass().getName();
-            String methodName = joinPoint.getSignature().getName();
-
-            log.put("requestTitle", requestTitle);
-            log.put("requestResult", requestResult);
-            log.put("requestArgs", requestArgs);
-            log.put("requestUrl", requestUrl);
-            log.put("requestMethod", requestMethod);
-            log.put("className", className);
-            log.put("methodName", methodName);
-
-            databaseDao.insertIntoLog(log);
+        Signature signature = joinPoint.getSignature();
+        MethodSignature methodSignature = (MethodSignature) signature;
+        Method method = methodSignature.getMethod();
+        Log controllerLog = null;
+        if (method != null) {
+            controllerLog = method.getAnnotation(Log.class);
         }
-        catch (Exception exp)
-        {
-            exp.printStackTrace();
+        Map<String, String> log = new HashMap<>(7);
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = null;
+        if (attributes != null) {
+            request = attributes.getRequest();
         }
+        String requestTitle = null;
+        if (controllerLog != null) {
+            requestTitle = controllerLog.title();
+        }
+        String requestResult = JSON.toJSONString(jsonResult);
+        String requestArgs = JSON.toJSONString(joinPoint.getArgs());
+        String requestUrl = null;
+        if (request != null) {
+            requestUrl = request.getRequestURL().toString();
+        }
+        String requestMethod = null;
+        if (request != null) {
+            requestMethod = request.getMethod();
+        }
+        String className = joinPoint.getTarget().getClass().getName();
+        String methodName = joinPoint.getSignature().getName();
+
+        log.put("requestTitle", requestTitle);
+        log.put("requestResult", requestResult);
+        log.put("requestArgs", requestArgs);
+        log.put("requestUrl", requestUrl);
+        log.put("requestMethod", requestMethod);
+        log.put("className", className);
+        log.put("methodName", methodName);
+
+        databaseDao.insertIntoLog(log);
     }
 }
