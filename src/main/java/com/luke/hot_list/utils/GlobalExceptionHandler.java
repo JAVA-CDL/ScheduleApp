@@ -8,6 +8,6 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public String handleException(Exception e) {
-        return "服务器内部异常";
+        return "服务器内部异常："+e.getMessage();
     }
 }
