@@ -7,6 +7,14 @@ database:
 juejin:
   cookie: "此处放掘金登录后的cookie"
 
+swagger:
+  basePackage: 'com.luke.hot_list.controller'
+  title: '热门'
+  description: '哈哈'
+  version: 1.0.0
+  enable: false
+
+
 server:
   port: 8080
 
