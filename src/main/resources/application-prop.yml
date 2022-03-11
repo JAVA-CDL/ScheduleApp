@@ -1,0 +1,18 @@
+app:
+  port: 8080
+database:
+  host: 127.0.0.1         #主机
+  port: 13306   #数据库地址
+  username: root          #数据库用户名
+  password: root          #数据库密码
+  name: hot_list
+
+juejin:
+  cookie: "此处放掘金登录后的cookie"
+
+swagger:
+  basePackage: 'com.luke.hot_list.controller'
+  title: '热门'
+  description: '哈哈'
+  version: 1.0.0
+  enable: false
