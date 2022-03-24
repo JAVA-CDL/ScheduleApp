@@ -29,6 +29,8 @@ public interface DatabaseDao {
      */
     void createTableLog();
 
+    void createTableHotList();
+
     @Insert("insert into log(request_title,request_result,request_args,request_url,request_method,class_name,method_name) " +
             "values(#{requestTitle},#{requestResult},#{requestArgs},#{requestUrl},#{requestMethod},#{className},#{methodName})")
     void insertIntoLog(Map<String, String> log);

@@ -13,6 +13,8 @@ public interface DataService {
      */
     void grabZhihu();
 
+    void grabHotList();
+
     /**
      * 删除已经tag为1的记录
      */

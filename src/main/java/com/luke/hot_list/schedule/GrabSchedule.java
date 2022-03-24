@@ -24,6 +24,11 @@ public class GrabSchedule {
         dataService.grabZhihu();
     }
 
+    @Scheduled(cron = "* 5 */1 * * ?")
+    public void grabHotList(){
+        dataService.grabHotList();
+    }
+
     @Scheduled(cron = "0 5 0 * * ?")
     public void cleanOldData() {
         dataService.cleanOldData();

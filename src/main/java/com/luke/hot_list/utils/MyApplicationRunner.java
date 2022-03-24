@@ -24,5 +24,6 @@ public class MyApplicationRunner implements ApplicationRunner {
         databaseDao.createTableZhihu();
         databaseDao.createTableHandbook();
         databaseDao.createTableLog();
+        databaseDao.createTableHotList();
     }
 }
