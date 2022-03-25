@@ -113,7 +113,7 @@ public class DataServiceImpl implements DataService {
         calendar.add(Calendar.DAY_OF_MONTH, -3);
         String date = DateUtil.format(calendar.getTime(),"yyyy-MM-dd");
         int result = zhihuDao.cleanOldData(date);
-        zhihuDao.cleanOldData();
+        zhihuDao.cleanOldHotListData();
         log.info(DateUtil.now() + "清理旧数据成功,共清理" + result + "条!");
     }
 
