@@ -101,7 +101,9 @@ public class DataServiceImpl implements DataService {
                 }
             }
         }
-        hotListDao.saveAll(list);
+        if (list.size() > 0) {
+            hotListDao.saveAll(list);
+        }
     }
 
     @Override
@@ -111,6 +113,7 @@ public class DataServiceImpl implements DataService {
         calendar.add(Calendar.DAY_OF_MONTH, -3);
         String date = DateUtil.format(calendar.getTime(),"yyyy-MM-dd");
         int result = zhihuDao.cleanOldData(date);
+        zhihuDao.cleanOldData();
         log.info(DateUtil.now() + "清理旧数据成功,共清理" + result + "条!");
     }
 

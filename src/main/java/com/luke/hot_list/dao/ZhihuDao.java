@@ -4,7 +4,6 @@ import com.luke.hot_list.entity.Zhihu;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 import java.util.Optional;
@@ -41,4 +40,8 @@ public interface ZhihuDao {
 
     @Delete("delete from zhihu where tag = 1 and SUBSTR(grab_date,1,10) = #{date}")
     int cleanOldData(String date);
+
+    @Delete("delete from hot_list where link not in \n" +
+            "(select t.link from (select link from hot_listorder by grab_date desc limit 500) t) ")
+    void cleanOldData();
 }

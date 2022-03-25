@@ -19,12 +19,12 @@ public class GrabSchedule {
     @Resource
     DataService dataService;
 
-    @Scheduled(cron = "* */10 * * * ?")
+    @Scheduled(cron = "* */15 * * * ?")
     public void grabZhihu() {
         dataService.grabZhihu();
     }
 
-    @Scheduled(cron = "* 5 */1 * * ?")
+    @Scheduled(cron = "* 35 */1 * * ?")
     public void grabHotList(){
         dataService.grabHotList();
     }
