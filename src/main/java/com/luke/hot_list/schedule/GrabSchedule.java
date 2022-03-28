@@ -24,7 +24,7 @@ public class GrabSchedule {
         dataService.grabZhihu();
     }
 
-    @Scheduled(cron = "* 35 */1 * * ?")
+    @Scheduled(cron = "0 35 */1 * * ?")
     public void grabHotList(){
         dataService.grabHotList();
     }

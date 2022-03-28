@@ -42,6 +42,6 @@ public interface ZhihuDao {
     int cleanOldData(String date);
 
     @Delete("delete from hot_list where link not in \n" +
-            "(select t.link from (select link from hot_listorder by grab_date desc limit 500) t) ")
+            "(select t.link from (select link from hot_list order by grab_date desc limit 500) t) ")
     void cleanOldHotListData();
 }

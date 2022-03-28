@@ -102,7 +102,8 @@ public class DataServiceImpl implements DataService {
             }
         }
         if (list.size() > 0) {
-            hotListDao.saveAll(list);
+            int result = hotListDao.saveAll(list);
+            log.info(DateUtil.now() + "抓取HotList记录成功,共入库" + result + "条!");
         }
     }
 
@@ -114,7 +115,7 @@ public class DataServiceImpl implements DataService {
         String date = DateUtil.format(calendar.getTime(),"yyyy-MM-dd");
         int result = zhihuDao.cleanOldData(date);
         zhihuDao.cleanOldHotListData();
-        log.info(DateUtil.now() + "清理旧数据成功,共清理" + result + "条!");
+//        log.info(DateUtil.now() + "清理旧数据成功,共清理" + result + "条!");
     }
 
     private String filterEmoji(String source) {
