@@ -3,4 +3,6 @@
 
 /src/main/resources/static
 
+/src/test
+
 *.iml

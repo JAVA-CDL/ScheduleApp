@@ -35,7 +35,7 @@ public class DataServiceImpl implements DataService {
 
     public static final String ZHIHU_URL = "https://www.zhihu.com/api/v3/feed/topstory/hot-list-web?limit=50&desktop=true";
     public static final String HOST_LIST_URL = "https://api.codelife.cc/api/top/list";
-    public static final String HOST_LIST_SIGNATUREKEY = "U2FsdGVkX18gzYBgCdsS45SWgI4EJsSFvkjeTpgYM0U=";
+    public static final String HOST_LIST_SIGNATUREKEY = "U2FsdGVkX18WifWuLZNQiQJenzSuxEc5AqgZdxVS9zg=";
 
     @Override
     public void grabZhihu() {
@@ -99,6 +99,8 @@ public class DataServiceImpl implements DataService {
                         list.add(hotList);
                     }
                 }
+            }else{
+                log.info(DateUtil.now() + "抓取HotList记录失败！" + bodyJSON.getString("msg"));
             }
         }
         if (list.size() > 0) {
