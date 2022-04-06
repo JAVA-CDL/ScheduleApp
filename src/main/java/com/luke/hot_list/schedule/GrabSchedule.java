@@ -2,7 +2,6 @@ package com.luke.hot_list.schedule;
 
 import com.luke.hot_list.service.DataService;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -19,17 +18,17 @@ public class GrabSchedule {
     @Resource
     DataService dataService;
 
-    @Scheduled(cron = "* */15 * * * ?")
+//    @Scheduled(cron = "* */15 * * * ?")
     public void grabZhihu() {
         dataService.grabZhihu();
     }
 
-    @Scheduled(cron = "0 35 */1 * * ?")
+//    @Scheduled(cron = "0 35 */1 * * ?")
     public void grabHotList(){
         dataService.grabHotList();
     }
 
-    @Scheduled(cron = "0 5 0 * * ?")
+//    @Scheduled(cron = "0 5 0 * * ?")
     public void cleanOldData() {
         dataService.cleanOldData();
     }

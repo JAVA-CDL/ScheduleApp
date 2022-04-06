@@ -1,6 +1,5 @@
 package com.luke.hot_list.utils;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,17 +16,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @ConditionalOnProperty(name = "swagger.enable", havingValue = "true")
 public class SwaggerConfiguration {
 
-    @Value("${swagger.basePackage}")
-    public String basePackage;
-    @Value("${swagger.title}")
-    public String title;
-    @Value("${swagger.description}")
-    public String description;
-    @Value("${swagger.version}")
-    public String version;
-
     @Bean
     public Docket createDocket() {
+        String basePackage = "com.luke.hot_list";
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
@@ -37,6 +28,9 @@ public class SwaggerConfiguration {
     }
 
     private ApiInfo apiInfo() {
+        String title = "Hot List API";
+        String description = "Hot List API";
+        String version = "1.0";
         return new ApiInfoBuilder()
                 .title(title)
                 .description(description)
