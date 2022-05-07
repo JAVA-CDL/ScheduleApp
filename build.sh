@@ -5,6 +5,8 @@ CLOUD_PASSWORD=""
 CLOUD_IMAGE_PREFIX="ccr.ccs.tencentyun.com/luke_app/hot_list"
 TAG=$1
 
+mvn clean install -DskipTests
+
 echo "构建镜像"
 docker build -t "$CLOUD_IMAGE_PREFIX":"$TAG" .
 docker tag "$CLOUD_IMAGE_PREFIX":"$TAG" "$CLOUD_IMAGE_PREFIX":latest
