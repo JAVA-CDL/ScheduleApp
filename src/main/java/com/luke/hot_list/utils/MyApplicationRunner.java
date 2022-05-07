@@ -3,6 +3,7 @@ package com.luke.hot_list.utils;
 import com.luke.hot_list.dao.DatabaseDao;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -18,6 +19,9 @@ public class MyApplicationRunner implements ApplicationRunner {
     @Resource
     private DatabaseDao databaseDao;
 
+    @Resource
+    private RedisTemplate<String,Object> redisTemplate;
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
         //启动之后,若数据库不存在,创建数据库
@@ -25,5 +29,7 @@ public class MyApplicationRunner implements ApplicationRunner {
         databaseDao.createTableHandbook();
         databaseDao.createTableLog();
         databaseDao.createTableHotList();
+        redisTemplate.opsForValue().set("juejin_cookie","juejin_cookie");
+        System.out.println((String) redisTemplate.opsForValue().get("juejin_cookie"));
     }
 }
