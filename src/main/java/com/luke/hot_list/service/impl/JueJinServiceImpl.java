@@ -44,7 +44,8 @@ public class JueJinServiceImpl implements JueJinService {
             JSONObject result = JSONObject.parseObject(body);
             String errMsg = result.getString("err_msg");
             if ("success".equalsIgnoreCase(errMsg)) {
-                log.info("签到成功，时间：{}", DateUtil.now());
+                Integer sumPoint = result.getJSONObject("data").getInteger("sum_point");
+                log.info("签到成功，时间：{}，总积分：{}", DateUtil.now(),sumPoint);
             }else {
                 log.info(DateUtil.now() + " 掘金签到结果: " + body);
             }
