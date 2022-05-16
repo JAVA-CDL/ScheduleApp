@@ -41,7 +41,13 @@ public class JueJinServiceImpl implements JueJinService {
         getCookie();
         if (!isCheckIn()) {
             String body = HttpRequest.post(BASE_URL + CHECK_IN_STATUS_URL).cookie(COOKIE).execute().body();
-            log.info(DateUtil.now() + " 掘金签到结果: " + body);
+            JSONObject result = JSONObject.parseObject(body);
+            String errMsg = result.getString("err_msg");
+            if ("success".equalsIgnoreCase(errMsg)) {
+                log.info("签到成功，时间：{}", DateUtil.now());
+            }else {
+                log.info(DateUtil.now() + " 掘金签到结果: " + body);
+            }
         }else{
             log.info(DateUtil.now() + " 掘金已经签到,无需重复签到");
         }
