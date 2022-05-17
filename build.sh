@@ -1,9 +1,7 @@
 #!/bin/bash
 
-CLOUD_USERNAME="100011397258"
-CLOUD_PASSWORD=""
-CLOUD_IMAGE_PREFIX="ccr.ccs.tencentyun.com/luke_app/hot_list"
-TAG=$1
+#读取配置文件   具体参考./build_env-demo.sh
+source ./build_env.sh
 
 mvn clean install -DskipTests
 

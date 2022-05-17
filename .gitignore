@@ -7,3 +7,5 @@
 /src/test
 
 *.iml
+
+build_env.sh
