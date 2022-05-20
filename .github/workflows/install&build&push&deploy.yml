@@ -1,0 +1,36 @@
+name: install&build&push&deploy
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 8
+        uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
+
+      - name: Build images with docker
+        run: |
+          docker build -t ${{ secrets.CLOUD_IMAGE_PREFIX }}:${GITHUB_SHA} .
+
+      - name: login to tencent
+        run: |
+          docker login ccr.ccs.tencentyun.com --username=${{ secrets.CLOUD_USERNAME }} --password=${{ secrets.CLOUD_PASSWORD }}
+
+      - name: push to tencent
+        run: |
+          docker push ${{ secrets.CLOUD_IMAGE_PREFIX }}:${GITHUB_SHA}
