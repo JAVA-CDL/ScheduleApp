@@ -1,4 +1,4 @@
-FROM hw-cloud/library/java8u321-minimal:v3
+FROM ccr.ccs.tencentyun.com/luke_tool/jdk:1.0
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo Asia/Shanghai > /etc/timezone
 VOLUME /tmp
 EXPOSE 18080
