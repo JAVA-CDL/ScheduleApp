@@ -25,7 +25,8 @@ jobs:
 
       - name: Build images with docker
         run: |
-          docker build -t ${{ secrets.CLOUD_IMAGE_PREFIX }}:${GITHUB_SHA} .
+          docker build -t ${{ secrets.CLOUD_IMAGE_PREFIX }}:${GITHUB_SHA} . |
+          docker tag ${{ secrets.CLOUD_IMAGE_PREFIX }}:${GITHUB_SHA} ${{ secrets.CLOUD_IMAGE_PREFIX }}:latest
 
       - name: login to tencent
         run: |
@@ -33,4 +34,5 @@ jobs:
 
       - name: push to tencent
         run: |
-          docker push ${{ secrets.CLOUD_IMAGE_PREFIX }}:${GITHUB_SHA}
+          docker push ${{ secrets.CLOUD_IMAGE_PREFIX }}:${GITHUB_SHA} |
+          docker push ${{ secrets.CLOUD_IMAGE_PREFIX }}:latest
