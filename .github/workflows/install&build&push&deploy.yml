@@ -47,7 +47,7 @@ jobs:
 
       - name: ssh to cloud
         run: |
-          sshpass -p ${{ secrets.SSH_PASSWORD }} ssh ${{ secrets.SSH_USERNAME }}
+          sshpass -p ${{ secrets.SSH_PASSWORD }} ssh -t -t ${{ secrets.SSH_USERNAME }}
 
       - name: deploy
         run: |
