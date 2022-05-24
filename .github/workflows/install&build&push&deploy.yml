@@ -40,15 +40,3 @@ jobs:
       - name: push latest to tencent
         run: |
           docker push ${{ secrets.CLOUD_IMAGE_PREFIX }}:latest
-
-      - name: install sshpass
-        run: |
-          sudo apt-get install sshpass
-
-      - name: ssh to cloud
-        run: |
-          sshpass -p ${{ secrets.SSH_PASSWORD }} ssh -t -t ${{ secrets.SSH_USERNAME }}
-
-      - name: deploy
-        run: |
-          sh /sh/deploy_hot_list.sh
