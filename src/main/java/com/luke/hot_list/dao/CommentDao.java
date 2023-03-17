@@ -15,4 +15,6 @@ public interface CommentDao {
 
     @Select("select * from comment order by create_time desc")
     List<Comment> getAll();
+    
+    
 }
